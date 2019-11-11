@@ -1,0 +1,180 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*box에 기본padding, margin 제거*/
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400; /*글자 굵기*/
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(126, 213, 111, 0.8),
+    rgba(40, 180, 133, 0.8)), 
+    url(../img/hero.jpg);
+  background-size: cover; /*뷰포트 혹은 요소에 항상 사이즈를 맞춤*/
+  background-position: center; /*사진 위치*/
+  position: relative;
+
+  clip-path: polygon(0 0,100% 0,100% 75vh, 0 100%);/*다각형 시계방향*/
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px; /*높이 지정시 너비는 브라우저가 알아서 설정*/
+}
+
+.text-box{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%); /*박스 요소에 대한 위치 변경*/
+  text-align: center;
+}
+
+.heading-primary{
+  color: #fff;
+  text-transform: uppercase;
+
+  backface-visibility: hidden;/*애니메이션 마지막에 흔들리는요소 제거*/
+  margin-bottom: 20px;
+}
+
+.heading-primary-main{
+  display: block; /*span의 기본타입은 inline*/
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+
+  /* animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out; */
+  animation: moveInLeft 1s ease-out;
+
+  /*
+  animation-delay: 3s;
+  animation-iteration-count: 3; /*애니메이션 반복횟수*/
+  */
+}
+
+.heading-primary-sub{
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0%{
+    opacity: 0;
+    transform: translateX(-100px); /* rotate(0deg) 회전속성*/
+  }
+  80%{
+    transform: translateX(10px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0%{
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80%{
+    transform: translateX(-10px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0%{
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn:link, /*아직 방문하지 않은 요소*/
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block; /*너비와 높이를 지정할 수 있음*/
+  border-radius: 100px;
+  transition: all .2s; /*btn 관련 전체 트랜스폼 설정*/
+  position:relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.2); /*x, y, blur-radius, color*/
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color:#777;
+}
+
+.btn::after { /*요소의 뒤에 같은요소 생성*/
+  content:"";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /*순서*/
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom .5s ease-out .75s; /*.75s-> delay*/
+  animation-fill-mode: backwards; /*거꾸로 컴포넌트 실행*/
+}
