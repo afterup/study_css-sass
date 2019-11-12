@@ -7,19 +7,27 @@ Dark green: #28b485
 
 */
 
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /*box에 기본padding, margin 제거*/
+  box-sizing: inherit; /*상속을 강제함*/
+}
+
+html { /*root components*/
+  font-size: 62.5%; /*10px으로 명시할 시 사용자의 기본글꼴 크기가 반영되지않음*/
 }
 
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400; /*글자 굵기*/
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1.7;
   color: #777;
-  padding: 30px;
+  padding: 3rem;
+
+  box-sizing: border-box; /*padding, margin에 상자크기가 영향을 받지않음*/
 }
 
 .header {
@@ -36,17 +44,17 @@ body {
   clip-path: polygon(0 0,100% 0,100% 75vh, 0 100%);/*다각형 시계방향*/
 }
 
-.logo-box {
+.header__logo-box {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 4rem;
+  left: 4rem;
 }
 
-.logo {
-  height: 35px; /*높이 지정시 너비는 브라우저가 알아서 설정*/
+.header__logo {
+  height: 3.5rem; /*높이 지정시 너비는 브라우저가 알아서 설정*/
 }
 
-.text-box{
+.header__text-box{
   position: absolute;
   top: 40%;
   left: 50%;
@@ -59,14 +67,14 @@ body {
   text-transform: uppercase;
 
   backface-visibility: hidden;/*애니메이션 마지막에 흔들리는요소 제거*/
-  margin-bottom: 20px;
+  margin-bottom: 6rem;
 }
 
-.heading-primary-main{
+.heading-primary--main{
   display: block; /*span의 기본타입은 inline*/
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 400;
-  letter-spacing: 35px;
+  letter-spacing: 3.5rem;
 
   /* animation-name: moveInLeft;
   animation-duration: 1s;
@@ -79,21 +87,21 @@ body {
   */
 }
 
-.heading-primary-sub{
+.heading-primary--sub{
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 17.4px;
+  letter-spacing: 1.75rem;
   animation: moveInRight 1s ease-out;
 }
 
 @keyframes moveInLeft {
   0%{
     opacity: 0;
-    transform: translateX(-100px); /* rotate(0deg) 회전속성*/
+    transform: translateX(-10rem); /* rotate(0deg) 회전속성*/
   }
   80%{
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
   100%{
     opacity: 1;
@@ -104,10 +112,10 @@ body {
 @keyframes moveInRight {
   0%{
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(10rem);
   }
   80%{
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
   100%{
     opacity: 1;
@@ -118,7 +126,7 @@ body {
 @keyframes moveInBottom {
   0%{
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(5rem);
   }
   100%{
     opacity: 1;
@@ -130,24 +138,24 @@ body {
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
   display: inline-block; /*너비와 높이를 지정할 수 있음*/
-  border-radius: 100px;
+  border-radius: 10rem;
   transition: all .2s; /*btn 관련 전체 트랜스폼 설정*/
   position:relative;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.2); /*x, y, blur-radius, color*/
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0,0,0,.2); /*x, y, blur-radius, color*/
 }
 
 .btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.2);
 }
 
-.btn-white {
+.btn--white {
   background-color: #fff;
   color:#777;
 }
@@ -157,7 +165,7 @@ body {
   display: inline-block;
   height: 100%;
   width: 100%;
-  border-radius: 100px;
+  border-radius: 10rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -165,7 +173,7 @@ body {
   transition: all .4s;
 }
 
-.btn-white::after {
+.btn--white::after {
   background-color: #fff;
 }
 
@@ -174,7 +182,7 @@ body {
   opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
   animation: moveInBottom .5s ease-out .75s; /*.75s-> delay*/
   animation-fill-mode: backwards; /*거꾸로 컴포넌트 실행*/
 }
